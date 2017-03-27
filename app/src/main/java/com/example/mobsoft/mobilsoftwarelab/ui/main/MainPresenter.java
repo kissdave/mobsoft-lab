@@ -8,8 +8,6 @@ import com.example.mobsoft.mobilsoftwarelab.ui.Presenter;
 
 public class MainPresenter extends Presenter<MainScreen> {
 
-    private static MainPresenter instance = null;
-
     public MainPresenter() {
     }
 
