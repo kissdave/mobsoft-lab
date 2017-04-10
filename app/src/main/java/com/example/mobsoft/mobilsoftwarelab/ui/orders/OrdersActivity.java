@@ -37,4 +37,9 @@ public class OrdersActivity extends AppCompatActivity implements OrdersScreen {
         super.onStop();
         ordersPresenter.detachScreen();
     }
+
+    @Override
+    public void getOrders(String text) {
+        Toast.makeText(this, "Orders updated " + text, Toast.LENGTH_SHORT).show();
+    }
 }

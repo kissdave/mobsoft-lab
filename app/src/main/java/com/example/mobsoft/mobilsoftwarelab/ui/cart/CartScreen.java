@@ -5,7 +5,8 @@ package com.example.mobsoft.mobilsoftwarelab.ui.cart;
  */
 
 public interface CartScreen {
+    public void getCartItems(String text);
+
     public void sendOrder(String text);
 
-    public void discardOrder(String text);
 }

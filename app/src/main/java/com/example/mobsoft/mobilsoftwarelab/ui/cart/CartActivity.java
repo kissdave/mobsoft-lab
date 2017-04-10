@@ -39,13 +39,13 @@ public class CartActivity extends AppCompatActivity implements CartScreen {
     }
 
     @Override
-    public void sendOrder(String text) {
+    public void getCartItems(String text) {
         Toast.makeText(this, "Order sent: " + text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    public void discardOrder(String text) {
-        Toast.makeText(this, "Order discarded: " + text, Toast.LENGTH_SHORT).show();
+    public void sendOrder(String text) {
+        Toast.makeText(this, "Order sent: " + text, Toast.LENGTH_SHORT).show();
     }
 
 }

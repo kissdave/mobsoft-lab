@@ -6,4 +6,6 @@ package com.example.mobsoft.mobilsoftwarelab.ui.main;
 
 public interface MainScreen {
     public void showMessage(String text);
+
+    public void getProducts(String text);
 }

@@ -5,4 +5,5 @@ package com.example.mobsoft.mobilsoftwarelab.ui.orders;
  */
 
 public interface OrdersScreen {
+    public void getOrders(String text);
 }

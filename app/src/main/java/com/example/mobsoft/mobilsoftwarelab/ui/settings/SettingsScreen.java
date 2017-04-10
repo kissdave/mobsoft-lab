@@ -5,5 +5,7 @@ package com.example.mobsoft.mobilsoftwarelab.ui.settings;
  */
 
 public interface SettingsScreen {
+    public void getSettings(String text);
+
     public void save(String text);
 }

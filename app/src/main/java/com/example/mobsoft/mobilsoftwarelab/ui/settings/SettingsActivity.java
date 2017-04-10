@@ -38,6 +38,11 @@ public class SettingsActivity  extends AppCompatActivity implements SettingsScre
     }
 
     @Override
+    public void getSettings(String text) {
+        Toast.makeText(this, "Settings updated " + text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void save(String text) {
         Toast.makeText(this, "Changes saved " + text, Toast.LENGTH_SHORT).show();
     }
