@@ -20,9 +20,13 @@ public interface Repository {
 
     List<Product> getProducts();
 
+    void updateProducts(List<Product> products);
+
     boolean isInDB(Product product);
 
     List<Order> getOrders();
+
+    void saveOrder(Order order);
 
     User getSettings();
 

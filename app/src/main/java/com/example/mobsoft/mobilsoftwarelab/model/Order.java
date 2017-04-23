@@ -1,5 +1,7 @@
 package com.example.mobsoft.mobilsoftwarelab.model;
 
+import com.orm.SugarContext;
+import com.orm.SugarRecord;
 import com.orm.dsl.Table;
 
 import java.util.Date;
@@ -9,7 +11,7 @@ import java.util.List;
  * Created by mobsoft on 2017. 04. 10..
  */
 @Table
-public class Order {
+public class Order extends SugarRecord {
     private Long id = null;
     private Date orderTime;
     private User user;

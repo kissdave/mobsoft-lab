@@ -1,13 +1,16 @@
 package com.example.mobsoft.mobilsoftwarelab.model;
 
+import com.orm.SugarRecord;
 import com.orm.dsl.Table;
+import com.orm.dsl.Unique;
 
 /**
  * Created by mobsoft on 2017. 04. 10..
  */
 
 @Table
-public class Product {
+public class Product extends SugarRecord {
+    @Unique
     private Long id = null;
     private String name;
     private String description;
