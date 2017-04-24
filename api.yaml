@@ -7,6 +7,8 @@ schemes:
 paths:
   /products:
     get:
+      tags:
+        - Product
       responses:
         '200':
           description: All products returned
@@ -16,6 +18,8 @@ paths:
               $ref: '#/definitions/Product'
   /order:
     post:
+      tags:
+        - Order
       summary: Submits an order
       description: Submits and order to server
       consumes:
@@ -36,6 +40,8 @@ paths:
           description: Error
   '/order/{userId}':
     get:
+      tags:
+        - Order
       summary: Gets the orders of a user
       produces:
         - application/json
