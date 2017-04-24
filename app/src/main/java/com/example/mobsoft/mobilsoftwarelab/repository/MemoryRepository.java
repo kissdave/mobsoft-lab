@@ -2,6 +2,7 @@ package com.example.mobsoft.mobilsoftwarelab.repository;
 
 import android.content.Context;
 
+import com.example.mobsoft.mobilsoftwarelab.model.Cart;
 import com.example.mobsoft.mobilsoftwarelab.model.Order;
 import com.example.mobsoft.mobilsoftwarelab.model.Product;
 import com.example.mobsoft.mobilsoftwarelab.model.User;
@@ -20,6 +21,7 @@ public class MemoryRepository implements Repository {
     private static List<Order> orders;
     private static List<Product> products;
     private static List<User> users;
+    private static List<Cart> carts;
 
     @Override
     public void open(Context context) {
@@ -77,5 +79,28 @@ public class MemoryRepository implements Repository {
 
         user.setId(old.getId());
         users.add(user);
+    }
+
+    @Override
+    public void addProductToCart(Product product) {
+        List<Product> productList = carts.get(0).getProducts();
+        productList.add(product);
+        carts.get(0).setProducts(productList);
+    }
+
+    public void removeProductFromCart(Product product) {
+        List<Product> productList = carts.get(0).getProducts();
+        productList.remove(productList.lastIndexOf(product));
+        carts.get(0).setProducts(productList);
+    }
+
+    @Override
+    public List<Product> GetProductsFromCart() {
+        return carts.get(0).getProducts();
+    }
+
+    @Override
+    public void clearCart() {
+        carts.get(0).setProducts(new ArrayList<Product>());
     }
 }

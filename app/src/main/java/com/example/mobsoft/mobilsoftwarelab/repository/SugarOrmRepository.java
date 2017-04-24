@@ -2,6 +2,7 @@ package com.example.mobsoft.mobilsoftwarelab.repository;
 
 import android.content.Context;
 
+import com.example.mobsoft.mobilsoftwarelab.model.Cart;
 import com.example.mobsoft.mobilsoftwarelab.model.Order;
 import com.example.mobsoft.mobilsoftwarelab.model.Product;
 import com.example.mobsoft.mobilsoftwarelab.model.User;
@@ -81,5 +82,24 @@ public class SugarOrmRepository implements Repository {
         userInDB.setEmail(user.getEmail());
         userInDB.setMobile(user.getMobile());
         userInDB.save();
+    }
+
+    @Override
+    public void addProductToCart(Product product) {
+        Cart cart = SugarRecord.listAll(Cart.class).get(0);
+        List<Product> productList = cart.getProducts();
+        productList.add(product);
+        cart.setProducts(productList);
+        cart.save();
+    }
+
+    @Override
+    public List<Product> GetProductsFromCart() {
+        return SugarRecord.listAll(Cart.class).get(0).getProducts();
+    }
+
+    @Override
+    public void clearCart() {
+        SugarRecord.listAll(Cart.class).get(0).setProducts(new ArrayList<Product>());
     }
 }

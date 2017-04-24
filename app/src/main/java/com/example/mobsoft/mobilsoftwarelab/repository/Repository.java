@@ -31,4 +31,10 @@ public interface Repository {
     User getSettings();
 
     void saveSettings(User user);
+
+    void addProductToCart(Product product);
+
+    List<Product> GetProductsFromCart();
+
+    void clearCart();
 }

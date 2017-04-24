@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.mobsoft.mobilsoftwarelab.MobSoftApplication;
 import com.example.mobsoft.mobilsoftwarelab.R;
+import com.example.mobsoft.mobilsoftwarelab.model.Product;
 
 import javax.inject.Inject;
 
@@ -42,5 +43,10 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     @Override
     public void getProducts(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void addProductToCart(Product product) {
+        Toast.makeText(this, "Product added", Toast.LENGTH_SHORT).show();
     }
 }
