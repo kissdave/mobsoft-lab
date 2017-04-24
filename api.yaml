@@ -1,0 +1,97 @@
+swagger: '2.0'
+info:
+  version: 1.0.0
+  title: PizzaOrder mobile app
+schemes:
+  - http
+paths:
+  /products:
+    get:
+      responses:
+        '200':
+          description: All products returned
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Product'
+  /order:
+    post:
+      summary: Submits an order
+      description: Submits and order to server
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - name: order
+          in: body
+          description: Submitted order
+          required: true
+          schema:
+            $ref: '#/definitions/Order'
+      responses:
+        '200':
+          description: Successful operation
+        '500':
+          description: Error
+  '/order/{userId}':
+    get:
+      summary: Gets the orders of a user
+      produces:
+        - application/json
+      parameters:
+        - in: path
+          name: userId
+          required: true
+          type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Order'
+        '400':
+          description: Invalid status value
+definitions:
+  Product:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      description:
+        type: string
+      price:
+        type: integer
+  Order:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      date:
+        type: string
+        format: date-time
+      user:
+        $ref: '#/definitions/User'
+      items:
+        type: array
+        items:
+          $ref: '#/definitions/Product'
+  User:
+    type: object
+    properties:
+      id:
+        type: integer
+        format: int64
+      name:
+        type: string
+      address:
+        type: string
+      mobile:
+        type: string
+      email:
+        type: string
