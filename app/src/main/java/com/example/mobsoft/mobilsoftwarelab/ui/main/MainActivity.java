@@ -41,6 +41,11 @@ public class MainActivity extends AppCompatActivity implements MainScreen {
     }
 
     @Override
+    public void displayProduct(Product product) {
+        Toast.makeText(this, "Product added", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
     public void getProducts(String text) {
         Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }

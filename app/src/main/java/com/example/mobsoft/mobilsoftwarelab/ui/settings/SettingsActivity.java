@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.mobsoft.mobilsoftwarelab.MobSoftApplication;
 import com.example.mobsoft.mobilsoftwarelab.R;
+import com.example.mobsoft.mobilsoftwarelab.model.User;
 
 import javax.inject.Inject;
 
@@ -45,5 +46,15 @@ public class SettingsActivity  extends AppCompatActivity implements SettingsScre
     @Override
     public void save(String text) {
         Toast.makeText(this, "Changes saved " + text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displaySettings(User user) {
+        Toast.makeText(this, user.getName(), Toast.LENGTH_SHORT).show();
     }
 }

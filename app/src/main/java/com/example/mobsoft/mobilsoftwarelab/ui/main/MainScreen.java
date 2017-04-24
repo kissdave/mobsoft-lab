@@ -9,6 +9,8 @@ import com.example.mobsoft.mobilsoftwarelab.model.Product;
 public interface MainScreen {
     public void showMessage(String text);
 
+    public void displayProduct(Product product);
+
     public void getProducts(String text);
 
     public void addProductToCart(Product product);

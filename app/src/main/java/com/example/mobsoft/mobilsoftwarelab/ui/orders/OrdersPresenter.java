@@ -1,6 +1,10 @@
 package com.example.mobsoft.mobilsoftwarelab.ui.orders;
 
+import android.util.Log;
+
 import com.example.mobsoft.mobilsoftwarelab.interactor.order.OrderInteractor;
+import com.example.mobsoft.mobilsoftwarelab.interactor.order.events.GetOrdersEvent;
+import com.example.mobsoft.mobilsoftwarelab.model.Order;
 import com.example.mobsoft.mobilsoftwarelab.ui.Presenter;
 
 
@@ -41,5 +45,31 @@ public class OrdersPresenter extends Presenter<OrdersScreen> {
     public void detachScreen() {
         bus.unregister(this);
         super.detachScreen();
+    }
+
+    public void getOrders() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                orderInteractor.GetOrders();
+            }
+        });
+    }
+
+    public void onEventMainThread(GetOrdersEvent event) {
+        Log.d("Orders presenter", "getOrders");
+        if(event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if(screen != null) {
+                screen.showMessage("Error: " + event.getThrowable().getMessage());
+            }
+            Log.e("Networking", "Error sending order", event.getThrowable());
+        } else {
+            if(screen != null) {
+                for (Order o : event.getOrders()) {
+                    screen.displayOrder(o);
+                }
+            }
+        }
     }
 }

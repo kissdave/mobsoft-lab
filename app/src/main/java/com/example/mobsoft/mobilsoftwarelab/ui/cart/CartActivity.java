@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.mobsoft.mobilsoftwarelab.MobSoftApplication;
 import com.example.mobsoft.mobilsoftwarelab.R;
+import com.example.mobsoft.mobilsoftwarelab.model.Product;
 
 import javax.inject.Inject;
 
@@ -48,4 +49,13 @@ public class CartActivity extends AppCompatActivity implements CartScreen {
         Toast.makeText(this, "Order sent: " + text, Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayProduct(Product product) {
+        Toast.makeText(this, product.getName(), Toast.LENGTH_SHORT).show();
+    }
 }

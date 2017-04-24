@@ -1,6 +1,11 @@
 package com.example.mobsoft.mobilsoftwarelab.ui.settings;
 
+import android.util.Log;
+
 import com.example.mobsoft.mobilsoftwarelab.interactor.user.UserInteractor;
+import com.example.mobsoft.mobilsoftwarelab.interactor.user.events.GetSettingsEvent;
+import com.example.mobsoft.mobilsoftwarelab.interactor.user.events.SaveSettingsEvent;
+import com.example.mobsoft.mobilsoftwarelab.model.User;
 import com.example.mobsoft.mobilsoftwarelab.ui.Presenter;
 
 import java.util.concurrent.Executor;
@@ -40,5 +45,53 @@ public class SettingsPresenter extends Presenter<SettingsScreen> {
     public void detachScreen() {
         bus.unregister(this);
         super.detachScreen();
+    }
+
+    public void getSettngs() {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                userInteractor.getSettings();
+            }
+        });
+    }
+
+    public void saveSettings(final User user) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                userInteractor.saveSettings(user);
+            }
+        });
+    }
+
+    public void onEventMainThread(GetSettingsEvent event) {
+        Log.d("Settings presenter", "getSettngs");
+        if(event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if(screen != null) {
+                screen.showMessage("Error: " + event.getThrowable().getMessage());
+            }
+            Log.e("Networking", "Error getting settings", event.getThrowable());
+        } else {
+            if(screen != null) {
+                screen.displaySettings(event.getUser());
+            }
+        }
+    }
+
+    public void onEventMainThread(SaveSettingsEvent event) {
+        Log.d("Settings presenter", "getSettngs");
+        if(event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if(screen != null) {
+                screen.showMessage("Error: " + event.getThrowable().getMessage());
+            }
+            Log.e("Networking", "Error getting settings", event.getThrowable());
+        } else {
+            if(screen != null) {
+                screen.showMessage("Settings saved.");
+            }
+        }
     }
 }

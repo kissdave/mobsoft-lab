@@ -6,6 +6,7 @@ import android.widget.Toast;
 
 import com.example.mobsoft.mobilsoftwarelab.MobSoftApplication;
 import com.example.mobsoft.mobilsoftwarelab.R;
+import com.example.mobsoft.mobilsoftwarelab.model.Order;
 
 import javax.inject.Inject;
 
@@ -41,5 +42,15 @@ public class OrdersActivity extends AppCompatActivity implements OrdersScreen {
     @Override
     public void getOrders(String text) {
         Toast.makeText(this, "Orders updated " + text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showMessage(String text) {
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void displayOrder(Order order) {
+        Toast.makeText(this, order.getOrderTime().toString(), Toast.LENGTH_SHORT).show();
     }
 }
