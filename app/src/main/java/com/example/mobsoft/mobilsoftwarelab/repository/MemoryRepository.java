@@ -33,7 +33,11 @@ public class MemoryRepository implements Repository {
         users = new ArrayList<>();
         users.add(user);
 
+        orders = new ArrayList<>();
         orders.add(new Order(1L, new Date(2017, 4, 23), user, products));
+
+        carts = new ArrayList<>();
+        carts.add(new Cart(1L, products));
     }
 
     @Override
