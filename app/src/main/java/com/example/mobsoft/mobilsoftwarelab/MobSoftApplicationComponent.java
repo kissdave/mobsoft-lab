@@ -8,6 +8,7 @@ import com.example.mobsoft.mobilsoftwarelab.interactor.cart.CartInteractor;
 import com.example.mobsoft.mobilsoftwarelab.interactor.order.OrderInteractor;
 import com.example.mobsoft.mobilsoftwarelab.interactor.product.ProductsInteractor;
 import com.example.mobsoft.mobilsoftwarelab.interactor.user.UserInteractor;
+import com.example.mobsoft.mobilsoftwarelab.network.NetworkModule;
 import com.example.mobsoft.mobilsoftwarelab.repository.RepositoryModule;
 import com.example.mobsoft.mobilsoftwarelab.ui.UIModule;
 import com.example.mobsoft.mobilsoftwarelab.ui.cart.CartActivity;
@@ -24,7 +25,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class})
+@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, NetworkModule.class})
 public interface MobSoftApplicationComponent {
     void inject(MobSoftApplication mobSoftApplication);
 

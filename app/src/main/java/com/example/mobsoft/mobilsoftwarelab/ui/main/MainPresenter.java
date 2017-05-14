@@ -16,10 +16,6 @@ import de.greenrobot.event.EventBus;
 
 import static com.example.mobsoft.mobilsoftwarelab.MobSoftApplication.injector;
 
-/**
- * Created by Patrik on 2017. 03. 19..
- */
-
 public class MainPresenter extends Presenter<MainScreen> {
 
     @Inject
@@ -30,9 +26,6 @@ public class MainPresenter extends Presenter<MainScreen> {
 
     @Inject
     EventBus bus;
-
-    public MainPresenter() {
-    }
 
     @Override
     public void attachScreen(MainScreen screen) {

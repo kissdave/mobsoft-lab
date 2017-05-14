@@ -31,9 +31,6 @@ public class CartPresenter extends Presenter<CartScreen> {
     @Inject
     EventBus bus;
 
-    public CartPresenter() {
-    }
-
     @Override
     public void attachScreen(CartScreen screen) {
         super.attachScreen(screen);

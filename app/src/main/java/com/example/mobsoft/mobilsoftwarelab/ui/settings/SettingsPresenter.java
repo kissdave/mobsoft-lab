@@ -31,9 +31,6 @@ public class SettingsPresenter extends Presenter<SettingsScreen> {
     @Inject
     EventBus bus;
 
-    public SettingsPresenter() {
-    }
-
     @Override
     public void attachScreen(SettingsScreen screen) {
         super.attachScreen(screen);

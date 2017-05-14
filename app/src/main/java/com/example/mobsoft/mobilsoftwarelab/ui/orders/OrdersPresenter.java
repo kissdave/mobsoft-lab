@@ -31,9 +31,6 @@ public class OrdersPresenter extends Presenter<OrdersScreen> {
     @Inject
     EventBus bus;
 
-    public OrdersPresenter() {
-    }
-
     @Override
     public void attachScreen(OrdersScreen screen) {
         super.attachScreen(screen);
