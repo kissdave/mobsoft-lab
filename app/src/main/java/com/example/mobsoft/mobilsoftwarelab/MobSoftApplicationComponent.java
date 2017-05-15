@@ -1,14 +1,12 @@
 package com.example.mobsoft.mobilsoftwarelab;
 
 
-import android.support.v7.app.AppCompatActivity;
-
 import com.example.mobsoft.mobilsoftwarelab.interactor.InteractorModule;
 import com.example.mobsoft.mobilsoftwarelab.interactor.cart.CartInteractor;
 import com.example.mobsoft.mobilsoftwarelab.interactor.order.OrderInteractor;
 import com.example.mobsoft.mobilsoftwarelab.interactor.product.ProductsInteractor;
 import com.example.mobsoft.mobilsoftwarelab.interactor.user.UserInteractor;
-import com.example.mobsoft.mobilsoftwarelab.network.NetworkModule;
+import com.example.mobsoft.mobilsoftwarelab.mock.MockNetworkModule;
 import com.example.mobsoft.mobilsoftwarelab.repository.RepositoryModule;
 import com.example.mobsoft.mobilsoftwarelab.ui.UIModule;
 import com.example.mobsoft.mobilsoftwarelab.ui.cart.CartActivity;
@@ -25,7 +23,7 @@ import javax.inject.Singleton;
 import dagger.Component;
 
 @Singleton
-@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, NetworkModule.class})
+@Component(modules = {UIModule.class, RepositoryModule.class, InteractorModule.class, MockNetworkModule.class})
 public interface MobSoftApplicationComponent {
     void inject(MobSoftApplication mobSoftApplication);
 

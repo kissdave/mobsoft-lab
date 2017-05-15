@@ -2,7 +2,6 @@ package com.example.mobsoft.mobilsoftwarelab.ui.orders;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -18,8 +17,9 @@ import com.example.mobsoft.mobilsoftwarelab.R;
 import com.example.mobsoft.mobilsoftwarelab.model.Order;
 import com.example.mobsoft.mobilsoftwarelab.ui.cart.CartActivity;
 import com.example.mobsoft.mobilsoftwarelab.ui.main.MainActivity;
-import com.example.mobsoft.mobilsoftwarelab.ui.main.ProductsArrayAdapterMain;
 import com.example.mobsoft.mobilsoftwarelab.ui.settings.SettingsActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.List;
 
@@ -30,6 +30,8 @@ import javax.inject.Inject;
  */
 
 public class OrdersActivity extends AppCompatActivity implements OrdersScreen, NavigationView.OnNavigationItemSelectedListener {
+
+    private Tracker mTracker;
 
     @Inject
     OrdersPresenter ordersPresenter;
@@ -51,6 +53,10 @@ public class OrdersActivity extends AppCompatActivity implements OrdersScreen, N
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Obtain the shared Tracker instance.
+        MobSoftApplication application = (MobSoftApplication) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     @Override
@@ -58,6 +64,10 @@ public class OrdersActivity extends AppCompatActivity implements OrdersScreen, N
         super.onStart();
         ordersPresenter.attachScreen(this);
         this.getOrders("Getting orders...");
+
+
+        mTracker.setScreenName("Image~MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override

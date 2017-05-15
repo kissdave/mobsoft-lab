@@ -3,6 +3,7 @@ package com.example.mobsoft.mobilsoftwarelab.interactor.order;
 import com.example.mobsoft.mobilsoftwarelab.MobSoftApplication;
 import com.example.mobsoft.mobilsoftwarelab.interactor.order.events.GetOrdersEvent;
 import com.example.mobsoft.mobilsoftwarelab.model.Order;
+import com.example.mobsoft.mobilsoftwarelab.network.OrderApi;
 import com.example.mobsoft.mobilsoftwarelab.repository.Repository;
 
 import java.util.List;
@@ -22,6 +23,9 @@ public class OrderInteractor {
     @Inject
     EventBus bus;
 
+    @Inject
+    OrderApi orderApi;
+
     public OrderInteractor() {
         MobSoftApplication.injector.inject(this);
     }
@@ -29,7 +33,8 @@ public class OrderInteractor {
     public void GetOrders() {
         GetOrdersEvent event = new GetOrdersEvent();
         try {
-            List<Order> orders = repository.getOrders();
+            //List<Order> orders = repository.getOrders();
+            List<Order> orders = orderApi.orderUserIdGet(repository.getSettings().getId().intValue()).execute().body();
             event.setOrders(orders);
             bus.post(event);
         } catch (Exception e) {

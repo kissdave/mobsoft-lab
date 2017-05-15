@@ -17,4 +17,5 @@ public interface CartScreen {
 
     public void displayProducts(List<Product> products);
 
+    public void removeFromCart(Product product);
 }

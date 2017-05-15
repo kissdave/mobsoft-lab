@@ -92,6 +92,13 @@ public class MemoryRepository implements Repository {
         carts.get(0).setProducts(productList);
     }
 
+    @Override
+    public void removeFromCart(Product product) {
+        List<Product> productList = carts.get(0).getProducts();
+        productList.remove(productList.lastIndexOf(product));
+        carts.get(0).setProducts(productList);
+    }
+
     public void removeProductFromCart(Product product) {
         List<Product> productList = carts.get(0).getProducts();
         productList.remove(productList.lastIndexOf(product));

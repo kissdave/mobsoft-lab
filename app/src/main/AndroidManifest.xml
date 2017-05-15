@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.mobsoft.mobilsoftwarelab">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+
     <application
         android:name=".MobSoftApplication"
         android:allowBackup="true"
@@ -42,6 +45,10 @@
 
             </intent-filter>
         </activity>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="610b1ee4d7cbd34d005fa9aa9132cafa9ce0cb27" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

@@ -21,6 +21,8 @@ import com.example.mobsoft.mobilsoftwarelab.model.Product;
 import com.example.mobsoft.mobilsoftwarelab.ui.main.MainActivity;
 import com.example.mobsoft.mobilsoftwarelab.ui.orders.OrdersActivity;
 import com.example.mobsoft.mobilsoftwarelab.ui.settings.SettingsActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.List;
 
@@ -31,6 +33,8 @@ import javax.inject.Inject;
  */
 
 public class CartActivity extends AppCompatActivity implements CartScreen, NavigationView.OnNavigationItemSelectedListener {
+
+    private Tracker mTracker;
 
     @Inject
     CartPresenter cartPresenter;
@@ -52,6 +56,10 @@ public class CartActivity extends AppCompatActivity implements CartScreen, Navig
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        // Obtain the shared Tracker instance.
+        MobSoftApplication application = (MobSoftApplication) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     @Override
@@ -59,6 +67,9 @@ public class CartActivity extends AppCompatActivity implements CartScreen, Navig
         super.onStart();
         cartPresenter.attachScreen(this);
         this.getCartItems("Getting items");
+
+        mTracker.setScreenName("Image~MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -142,5 +153,10 @@ public class CartActivity extends AppCompatActivity implements CartScreen, Navig
             sum += p.getPrice();
         }
         return sum;
+    }
+
+    @Override
+    public void removeFromCart(Product product) {
+        cartPresenter.removeFromCart(product);
     }
 }

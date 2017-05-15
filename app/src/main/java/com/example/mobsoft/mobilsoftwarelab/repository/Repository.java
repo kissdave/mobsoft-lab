@@ -34,6 +34,8 @@ public interface Repository {
 
     void addProductToCart(Product product);
 
+    void removeFromCart(Product product);
+
     List<Product> GetProductsFromCart();
 
     void clearCart();

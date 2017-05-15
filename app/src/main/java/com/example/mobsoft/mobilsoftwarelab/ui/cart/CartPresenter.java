@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.mobsoft.mobilsoftwarelab.interactor.cart.CartInteractor;
 import com.example.mobsoft.mobilsoftwarelab.interactor.cart.events.GetCartItemsEvent;
+import com.example.mobsoft.mobilsoftwarelab.interactor.cart.events.RemoveFromCartEvent;
 import com.example.mobsoft.mobilsoftwarelab.interactor.cart.events.SendOrderEvent;
 import com.example.mobsoft.mobilsoftwarelab.model.Product;
 import com.example.mobsoft.mobilsoftwarelab.ui.Presenter;
@@ -62,6 +63,15 @@ public class CartPresenter extends Presenter<CartScreen> {
         });
     }
 
+    public void removeFromCart(final Product product) {
+        executor.execute(new Runnable() {
+            @Override
+            public void run() {
+                cartInteractor.removeFromCart(product);
+            }
+        });
+    }
+
     public void onEventMainThread(GetCartItemsEvent event) {
         Log.d("Cart presenter", "getCartItems");
         if(event.getThrowable() != null) {
@@ -87,6 +97,21 @@ public class CartPresenter extends Presenter<CartScreen> {
             Log.e("Networking", "Error sending order", event.getThrowable());
         } else {
             screen.showMessage("Order sent.");
+        }
+    }
+
+    public void onEventMainThread(RemoveFromCartEvent event) {
+        Log.d("Cart presenter", "RemoveFromCartEvent");
+        if(event.getThrowable() != null) {
+            event.getThrowable().printStackTrace();
+            if(screen != null) {
+                screen.showMessage("Error: " + event.getThrowable().getMessage());
+            }
+            Log.e("Networking", "Error reading products", event.getThrowable());
+        } else {
+            if(screen != null) {
+                screen.showMessage("Removed");
+            }
         }
     }
 }

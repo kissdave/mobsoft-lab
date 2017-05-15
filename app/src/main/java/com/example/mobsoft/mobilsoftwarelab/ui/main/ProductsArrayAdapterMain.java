@@ -1,7 +1,6 @@
 package com.example.mobsoft.mobilsoftwarelab.ui.main;
 
 import android.content.Context;
-import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -52,5 +51,10 @@ public class ProductsArrayAdapterMain extends ArrayAdapter<Product> {
 
         return rowView;
 
+    }
+
+    @Override
+    public int getCount() {
+        return products.size();
     }
 }

@@ -1,14 +1,16 @@
 package com.example.mobsoft.mobilsoftwarelab.ui.main;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -18,12 +20,16 @@ import com.example.mobsoft.mobilsoftwarelab.model.Product;
 import com.example.mobsoft.mobilsoftwarelab.ui.cart.CartActivity;
 import com.example.mobsoft.mobilsoftwarelab.ui.orders.OrdersActivity;
 import com.example.mobsoft.mobilsoftwarelab.ui.settings.SettingsActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import java.util.List;
 
 import javax.inject.Inject;
 
 public class MainActivity extends AppCompatActivity implements MainScreen, NavigationView.OnNavigationItemSelectedListener {
+
+    private Tracker mTracker;
 
     @Inject
     MainPresenter mainPresenter;
@@ -45,13 +51,28 @@ public class MainActivity extends AppCompatActivity implements MainScreen, Navig
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        Button button = (Button)findViewById(R.id.crash_btn);
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                throw new RuntimeException("This is a crash");
+            }
+        });
+
+        // Obtain the shared Tracker instance.
+        MobSoftApplication application = (MobSoftApplication) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         mainPresenter.attachScreen(this);
-        this.getProducts("Updating products...");
+        //.getProducts("Updating products...");
+
+        mTracker.setScreenName("Image~MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     @Override
@@ -103,7 +124,7 @@ public class MainActivity extends AppCompatActivity implements MainScreen, Navig
     public void displayProducts(List<Product> products) {
         Toast.makeText(this, "Products added", Toast.LENGTH_SHORT).show();
         final ProductsArrayAdapterMain adapter = new ProductsArrayAdapterMain(this, products);
-        ((ListView)this.findViewById(R.id.productsListView)).setAdapter(adapter);
+        ((ListView) this.findViewById(R.id.productsListView)).setAdapter(adapter);
     }
 
     @Override
@@ -115,5 +136,9 @@ public class MainActivity extends AppCompatActivity implements MainScreen, Navig
     public void addProductToCart(Product product) {
         mainPresenter.addProductToCart(product);
         Toast.makeText(this, "Product added to cart", Toast.LENGTH_SHORT).show();
+    }
+
+    public void forceCrash(View view) {
+        throw new RuntimeException("This is a crash");
     }
 }

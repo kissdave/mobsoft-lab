@@ -21,6 +21,8 @@ public class SugarOrmRepository implements Repository {
     @Override
     public void open(Context context) {
         SugarContext.init(context);
+        SugarRecord.save(new Cart(1L, new ArrayList<Product>()));
+        SugarRecord.save(new User(1L, "Test user", "test@example.com", "+36 20 123 5678", "Budapest"));
     }
 
     @Override
@@ -89,6 +91,15 @@ public class SugarOrmRepository implements Repository {
         Cart cart = SugarRecord.listAll(Cart.class).get(0);
         List<Product> productList = cart.getProducts();
         productList.add(product);
+        cart.setProducts(productList);
+        cart.save();
+    }
+
+    @Override
+    public void removeFromCart(Product product) {
+        Cart cart = SugarRecord.listAll(Cart.class).get(0);
+        List<Product> productList = cart.getProducts();
+        productList.remove(product);
         cart.setProducts(productList);
         cart.save();
     }

@@ -24,7 +24,7 @@ public class OrderMock {
         int responseCode;
         Headers headers = request.headers();
 
-        if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "Orders") && request.method().equals("POST")) {
+        if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "order") && request.method().equals("POST")) {
             responseString = "";
             responseCode = 200;
         } else if (uri.getPath().equals(NetworkConfig.ENDPOINT_PREFIX + "Orders") && request.method().equals("Get")) {

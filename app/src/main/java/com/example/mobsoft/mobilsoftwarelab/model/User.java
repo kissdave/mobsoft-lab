@@ -1,14 +1,13 @@
 package com.example.mobsoft.mobilsoftwarelab.model;
 
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
 
 /**
  * Created by mobsoft on 2017. 04. 10..
  */
-@Table
+
 public class User extends SugarRecord {
-    private Long id = null;
+//    private Long id = null;
     private String name;
     private String email;
     private String mobile;
@@ -18,13 +17,13 @@ public class User extends SugarRecord {
     }
 
     public User(Long id, String name, String email, String mobile, String address) {
-        this.id = id;
+  //      this.id = id;
         this.name = name;
         this.email = email;
         this.mobile = mobile;
         this.address = address;
     }
-
+/*
     public Long getId() {
         return id;
     }
@@ -32,7 +31,7 @@ public class User extends SugarRecord {
     public void setId(Long id) {
         this.id = id;
     }
-
+*/
     public String getName() {
         return name;
     }

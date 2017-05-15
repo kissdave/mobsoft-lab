@@ -2,7 +2,6 @@ package com.example.mobsoft.mobilsoftwarelab.ui.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -10,7 +9,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -21,6 +19,8 @@ import com.example.mobsoft.mobilsoftwarelab.model.User;
 import com.example.mobsoft.mobilsoftwarelab.ui.cart.CartActivity;
 import com.example.mobsoft.mobilsoftwarelab.ui.main.MainActivity;
 import com.example.mobsoft.mobilsoftwarelab.ui.orders.OrdersActivity;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 
 import javax.inject.Inject;
 
@@ -29,13 +29,16 @@ import javax.inject.Inject;
  */
 
 public class SettingsActivity extends AppCompatActivity implements SettingsScreen, NavigationView.OnNavigationItemSelectedListener {
+
+    private Tracker mTracker;
+
     @Inject
     SettingsPresenter settingsPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_settings);
 
         MobSoftApplication.injector.inject(this);
 
@@ -50,14 +53,23 @@ public class SettingsActivity extends AppCompatActivity implements SettingsScree
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        Button save = (Button)findViewById(R.id.setting_save_btn);
-        save.setOnClickListener(new SaveButtonListener(this));
+        MobSoftApplication application = (MobSoftApplication) getApplication();
+        mTracker = application.getDefaultTracker();
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         settingsPresenter.attachScreen(this);
+
+        mTracker.setScreenName("Image~MainActivity");
+        mTracker.send(new HitBuilders.ScreenViewBuilder().build());
+
+        this.getSettings("Getting settings...");
+
+        Button saveBtn = (Button) findViewById(R.id.setting_save_btn);
+        saveBtn.setOnClickListener(new SaveButtonListener(this));
+
     }
 
     @Override
@@ -68,7 +80,8 @@ public class SettingsActivity extends AppCompatActivity implements SettingsScree
 
     @Override
     public void getSettings(String text) {
-        Toast.makeText(this, "Settings updated " + text, Toast.LENGTH_SHORT).show();
+        settingsPresenter.getSettngs();
+        Toast.makeText(this, text, Toast.LENGTH_SHORT).show();
     }
 
     @Override

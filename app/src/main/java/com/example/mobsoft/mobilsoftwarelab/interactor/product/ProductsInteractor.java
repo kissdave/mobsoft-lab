@@ -4,6 +4,7 @@ import com.example.mobsoft.mobilsoftwarelab.MobSoftApplication;
 import com.example.mobsoft.mobilsoftwarelab.interactor.product.events.AddProductToCartEvent;
 import com.example.mobsoft.mobilsoftwarelab.interactor.product.events.GetProductsEvent;
 import com.example.mobsoft.mobilsoftwarelab.model.Product;
+import com.example.mobsoft.mobilsoftwarelab.network.ProductApi;
 import com.example.mobsoft.mobilsoftwarelab.repository.Repository;
 
 import java.util.List;
@@ -24,6 +25,9 @@ public class ProductsInteractor {
     @Inject
     EventBus bus;
 
+    @Inject
+    ProductApi productApi;
+
     public ProductsInteractor() {
         MobSoftApplication.injector.inject(this);
     }
@@ -31,7 +35,8 @@ public class ProductsInteractor {
     public void getProducts() {
         GetProductsEvent event = new GetProductsEvent();
         try {
-            List<Product> products = repository.getProducts();
+            //List<Product> products = repository.getProducts();
+            List<Product> products = productApi.productsGet().execute().body();
             event.setProducts(products);
             bus.post(event);
         } catch (Exception e) {

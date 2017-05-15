@@ -1,8 +1,6 @@
 package com.example.mobsoft.mobilsoftwarelab.model;
 
-import com.orm.SugarContext;
 import com.orm.SugarRecord;
-import com.orm.dsl.Table;
 
 import java.util.Date;
 import java.util.List;
@@ -10,9 +8,9 @@ import java.util.List;
 /**
  * Created by mobsoft on 2017. 04. 10..
  */
-@Table
+
 public class Order extends SugarRecord {
-    private Long id = null;
+//    private Long id = null;
     private Date orderTime;
     private User user;
     private List<Product> items;
@@ -21,19 +19,19 @@ public class Order extends SugarRecord {
     }
 
     public Order(Long id, Date orderTime, User user, List<Product> items) {
-        this.id = id;
+  //      this.id = id;
         this.orderTime = orderTime;
         this.user = user;
         this.items = items;
     }
 
-    public Long getId() {
+    /*public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
+    }*/
 
     public Date getOrderTime() {
         return orderTime;

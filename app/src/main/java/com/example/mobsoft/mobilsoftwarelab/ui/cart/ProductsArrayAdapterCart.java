@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.example.mobsoft.mobilsoftwarelab.R;
 import com.example.mobsoft.mobilsoftwarelab.model.Product;
-import com.example.mobsoft.mobilsoftwarelab.ui.main.MainActivity;
 
 import java.util.List;
 
@@ -46,7 +45,7 @@ public class ProductsArrayAdapterCart extends ArrayAdapter<Product> {
             @Override
             public void onClick(View v) {
                 if(context instanceof CartActivity) {
-
+                    ((CartActivity)context).removeFromCart(products.get(position));
                 }
             }
         });
