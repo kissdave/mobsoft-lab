@@ -44,10 +44,10 @@ public class CartTest  {
         cartPresenter.attachScreen(cartScreen);
         cartPresenter.getCartItems();
 
-        ArgumentCaptor<Product> productsCaptor = ArgumentCaptor.forClass(Product.class);
-        verify(cartScreen, times(2)).displayProduct(productsCaptor.capture());
+        ArgumentCaptor<List<Product>> productsCaptor = ArgumentCaptor.forClass((Class) List.class);
+        verify(cartScreen, times(1)).displayProducts(productsCaptor.capture());
 
-        List<Product> capturedProducts = productsCaptor.getAllValues();
+        List<Product> capturedProducts = productsCaptor.getValue();
         assertEquals("Hawaii pizza", capturedProducts.get(0).getName());
         assertEquals("Szalámis pizza", capturedProducts.get(1).getName());
     }

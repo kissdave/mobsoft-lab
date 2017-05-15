@@ -72,9 +72,7 @@ public class CartPresenter extends Presenter<CartScreen> {
             Log.e("Networking", "Error reading products", event.getThrowable());
         } else {
             if(screen != null) {
-                for(Product p : event.getProducts()) {
-                    screen.displayProduct(p);
-                }
+                screen.displayProducts(event.getProducts());
             }
         }
     }

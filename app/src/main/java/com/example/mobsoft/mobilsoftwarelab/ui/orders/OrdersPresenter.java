@@ -63,9 +63,7 @@ public class OrdersPresenter extends Presenter<OrdersScreen> {
             Log.e("Networking", "Error sending order", event.getThrowable());
         } else {
             if(screen != null) {
-                for (Order o : event.getOrders()) {
-                    screen.displayOrder(o);
-                }
+                screen.displayOrders(event.getOrders());
             }
         }
     }

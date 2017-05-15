@@ -2,6 +2,8 @@ package com.example.mobsoft.mobilsoftwarelab.ui.cart;
 
 import com.example.mobsoft.mobilsoftwarelab.model.Product;
 
+import java.util.List;
+
 /**
  * Created by mobsoft on 2017. 03. 27..
  */
@@ -13,6 +15,6 @@ public interface CartScreen {
 
     public void showMessage(String text);
 
-    public void displayProduct(Product product);
+    public void displayProducts(List<Product> products);
 
 }

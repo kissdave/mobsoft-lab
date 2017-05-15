@@ -46,10 +46,10 @@ public class OrderTest  {
         ordersPresenter.attachScreen(ordersScreen);
         ordersPresenter.getOrders();
 
-        ArgumentCaptor<Order> productsCaptor = ArgumentCaptor.forClass(Order.class);
-        verify(ordersScreen, times(1)).displayOrder(productsCaptor.capture());
+        ArgumentCaptor<List<Order>> productsCaptor = ArgumentCaptor.forClass((Class) List.class);
+        verify(ordersScreen, times(1)).displayOrders(productsCaptor.capture());
 
-        List<Order> capturedProducts = productsCaptor.getAllValues();
+        List<Order> capturedProducts = productsCaptor.getValue();
         assertEquals(new Date(2017, 4, 23), capturedProducts.get(0).getOrderTime());
     }
 

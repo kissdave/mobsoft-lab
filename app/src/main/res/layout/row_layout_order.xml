@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+
+
+        <TextView
+            android:id="@+id/order_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Rendelés ideje: xxxx-xx-xx xx:xx"
+            android:textSize="24dp"
+            android:layout_marginTop="5dp"></TextView>
+
+        <TextView
+            android:id="@+id/order_address"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+
+            android:text="Szállítási cím: Rendelésnél megadott szállítási cím"
+            android:textSize="18dp"></TextView>
+
+    <TextView
+        android:id="@+id/order_items"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:text="Rendelés: fjdslkéfjdslk"
+        android:textSize="14dp"
+        android:layout_marginBottom="2dp"
+        android:layout_marginTop="10dp"></TextView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dip"
+        android:background="#333333"></View>
+
+</LinearLayout>

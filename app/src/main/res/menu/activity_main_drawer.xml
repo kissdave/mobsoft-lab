@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_pizza"
+            android:icon="@drawable/ic_pizza"
+            android:title="Pizzák listája" />
+        <item
+            android:id="@+id/nav_cart"
+            android:icon="@drawable/ic_cart"
+            android:title="Kosár" />
+        <item
+            android:id="@+id/nav_orders"
+            android:icon="@drawable/ic_view_list"
+            android:title="Előző rendelések" />
+    </group>
+
+    <item android:title="Beállítások">
+        <menu>
+            <item
+                android:id="@+id/nav_settings"
+                android:icon="@drawable/ic_settings"
+                android:title="Beállítások" />
+        </menu>
+    </item>
+
+</menu>
